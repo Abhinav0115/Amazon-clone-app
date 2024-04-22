@@ -12,6 +12,14 @@ export const metadata: Metadata = {
     title: "Amazon Clone App",
     description:
         "Amazon Clone App built with Next.js, Tailwind CSS, Supabase, Redux Toolkit, TypeScript, Stripe, and more.",
+    icons: [
+        {
+            url: "/amazon-logo.ico",
+            href: "/amazon-logo.ico",
+            rel: "icon",
+            type: "image/x-icon",
+        },
+    ],
 };
 
 export default function RootLayout({
