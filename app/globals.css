@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#loadingMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.loadingBox {
+    display: flex;
+    animation: 6s infinite LoadingRotate;
+}
+.loadingBar {
+    height: 50px;
+    width: 20px;
+}
+#loaingA2 {
+    height: 0;
+    background: #ed7f3b;
+    animation: 2s infinite LoadingAnim;
+}
+
+#loaingA1 {
+    height: 0;
+    background: #d65d2b;
+    animation: 2.9s infinite LoadingAnim;
+}
+
+@keyframes LoadingAnim {
+    00% {
+        height: 2px;
+    }
+    50% {
+        height: 50px;
+    }
+    99% {
+        height: 2px;
+    }
+}
+
+@keyframes LoadingRotate {
+    00% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(359deg);
+    }
+    99% {
+        transform: rotate(0deg);
+    }
+}
