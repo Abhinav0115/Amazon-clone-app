@@ -26,9 +26,12 @@ const OrderSuccess = () => {
         <div className=" w-[50%] mx-auto text-center my-10 space-y-5">
             <div className="font-bold text-2xl ">Thank you for your order!</div>
             {/* <div>You will receive an email confirmation shortly.</div> */}
-            <button className="focus:outline-none text-white bg-amazon-primary hover:hover:bg-[#ffa052] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 rounded-lg text-lg shadow w-32">
+            <Link
+                href={"/"}
+                className="focus:outline-none text-white bg-amazon-primary hover:hover:bg-[#ffa052] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 rounded-lg text-lg shadow w-32"
+            >
                 Home
-            </button>
+            </Link>
             <div>
                 <div className="text-start text-lg font-bold ">
                     Ordered Products:
