@@ -89,7 +89,13 @@ const AddToCartContainer = ({ singleProduct }: singleProductProps) => {
                 >
                     Add to Cart
                 </button>
-                <button className="bg-amazon-secondary hover:bg-[#ffc700] rounded-full p-1.5">
+                <button
+                    className="bg-amazon-secondary hover:bg-[#ffc700] rounded-full p-1.5"
+                    onClick={() => {
+                        dispatch(addToCart(singleProduct));
+                        router.push("/checkout");
+                    }}
+                >
                     Buy Now
                 </button>
             </div>
