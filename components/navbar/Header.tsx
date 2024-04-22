@@ -72,7 +72,9 @@ const Header = () => {
                     />
                 </Link>
                 <nav className="md:flex flex-1 h-full gap-10 hidden">
-                    <div className="flex items-center justify-center text-base font-semibold cursor-pointer tracking-tight">
+                    <div className="flex items-center justify-center text-base font-semibold cursor-pointer tracking-tight" onClick={()=> {
+                        router.push("/")
+                    }}>
                         Category
                         {/* <BiChevronDown /> */}
                     </div>

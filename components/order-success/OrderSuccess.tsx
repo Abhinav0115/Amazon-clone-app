@@ -6,12 +6,15 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { useSupabase } from "@/utils/hooks/useSupabase";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const OrderSuccess = () => {
     const dispatch = useAppDispatch();
 
     const order = useAppSelector(getOrder);
     const { UserData, getUserData } = useSupabase();
+
+    const router = useRouter();
 
     useEffect(() => {
         dispatch(clearCart());
@@ -23,20 +26,27 @@ const OrderSuccess = () => {
     }, []);
 
     return order.length !== 0 ? (
-        <div className=" w-[50%] mx-auto text-center my-10 space-y-5">
-            <div className="font-bold text-2xl ">Thank you for your order!</div>
+        <div className=" w-[50%] mx-auto text-center my-14 space-y-5">
+            <div className="font-bold text-4xl  ">
+                Thank you for your order!
+            </div>
             {/* <div>You will receive an email confirmation shortly.</div> */}
-            <Link
-                href={"/"}
+            <button
                 className="focus:outline-none text-white bg-amazon-primary hover:hover:bg-[#ffa052] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 rounded-lg text-lg shadow w-32"
+                onClick={() => {
+                    router.push("/");
+                }}
             >
                 Home
-            </Link>
+            </button>
             <div>
-                <div className="text-start text-lg font-bold ">
-                    Ordered Products:
-                </div>
-                {order &&
+                {order.length > 0 && (
+                    <div className="text-start text-lg font-bold ">
+                        Ordered Products:
+                    </div>
+                )}
+                {UserData !== null &&
+                    order &&
                     order.map((item: any) => (
                         <div
                             key={item.id}
