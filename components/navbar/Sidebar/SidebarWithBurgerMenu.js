@@ -154,11 +154,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                                 " " +
                                                 UserData?.user_metadata?.name?.split(
                                                     " "
-                                                )[1] +
-                                                " " +
-                                                UserData?.user_metadata?.name?.split(
-                                                    " "
-                                                )[2]}
+                                                )[1]}
                                         </div>
                                     ) : (
                                         <div
