@@ -15,7 +15,7 @@ const HomeCard = ({ product }) => {
     return (
         <>
             <Card
-                className=" w-full h-full rounded-2xl flex justify-between cursor-pointer hover:bg-light-blue-50 transition duration-300 ease-in-out hover:bg-opacity-25"
+                className=" w-full h-full rounded-2xl flex justify-between cursor-pointer hover:bg-light-blue-50 hover:shadow-2xl transition duration-300 ease-in-out hover:bg-opacity-25"
                 onClick={() => router.push(`/product/${product.id}`)}
             >
                 <CardHeader className="m-0 w-full bg-gray-200 h-64 flex items-center justify-center shadow-none rounded-none rounded-t-2xl">
@@ -40,7 +40,10 @@ const HomeCard = ({ product }) => {
                                 <ProductRating ratings={product?.rating} />
                             )}
                     </Typography>
-                    <Typography className="text-sm ">
+                    <Typography
+                        className="text-sm "
+                        // title={product.description}
+                    >
                         {product.description.substring(0, 70)}...
                     </Typography>
                     <Typography className="font-bold text-2xl text-black text-center">

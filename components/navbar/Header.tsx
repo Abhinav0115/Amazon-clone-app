@@ -57,7 +57,6 @@ const Header = () => {
         getUserData();
     }, []);
 
-
     return (
         <>
             <div className="px-6 flex flex-1 text-white bg-amazon-dark w-full min-h-[10vh] h-fit items-center gap-10 justify-between">
@@ -104,18 +103,23 @@ const Header = () => {
                                 {UserData ? (
                                     <div className="">
                                         {UserData.user_metadata.name ? (
-                                            <>
+                                            <div
+                                                title={
+                                                    UserData.user_metadata.name
+                                                }
+                                            >
                                                 Hello,{" "}
                                                 {
                                                     UserData.user_metadata.name?.split(
                                                         " "
                                                     )[0]
                                                 }
-                                            </>
+                                            </div>
                                         ) : (
                                             <div
                                                 className=""
                                                 style={{ fontSize: "10px" }}
+                                                title={UserData.email}
                                             >
                                                 {UserData.email}
                                             </div>
