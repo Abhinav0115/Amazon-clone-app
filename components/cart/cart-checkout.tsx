@@ -139,7 +139,7 @@ const CartCheckout = ({ totalPrice, totalQuantity }: checkoutCartProps) => {
                     <button
                         className="focus:outline-none text-black bg-amber-300 hover:hover:bg-amber-400 focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
                         onClick={() => {
-                            router.push("/auth/signin");
+                            router.push("/user/signin");
                         }}
                     >
                         Sign In to Proceed

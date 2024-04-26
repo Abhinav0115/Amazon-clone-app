@@ -40,11 +40,11 @@ const HomePage = () => {
         // home ->  home-grid(category's product, title) -> card (products)
 
         <div
-            className=" bg-[#dddddd] bg-gradient-to-b from-[#ffffff] to-[#2c2e2e] w-full  transition-all flex flex-col gap-5"
+            className=" bg-[#dddddd] bg-gradient-to-b from-[#ffffff] to-[#2c2e2e] w-full  transition-all flex flex-col gap-5 aapb-64 aamd:aapb-0"
             id="homePage"
         >
             <HomeCarousels />
-            <div className="md:relative h-fit md:-top-64 flex flex-col gap-10 -mb-52 ">
+            <div className="md:relative h-fit md:-top-64 flex flex-col gap-10 md:-mb-52 mb-10  ">
                 <HomeGrid
                     products={MensProducts}
                     title={"Men's Clothing"}

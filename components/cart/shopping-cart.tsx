@@ -33,11 +33,11 @@ const DeliShoppingCart = () => {
             <div className="bg-[#eaeded] min-h-full pb-5 m-0 mt-0 min-w-full px-6 pt-9">
                 <div className="w-full text-black">
                     <div className="">
-                        <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
+                        <div className="grid md:grid-cols-4 grid-cols-1 gap-0 md:gap-5">
                             <div className=" min-h-[38vh] col-span-3 bg-white rounded-xl">
                                 <div className="p-3 py-2 space-y-2">
                                     <div>
-                                        <h1 className="text-2xl font-medium">
+                                        <h1 className="text-2xl font-semibold text-center">
                                             Shopping Cart
                                         </h1>
                                         {/* TODO: rebuild */}
@@ -61,7 +61,7 @@ const DeliShoppingCart = () => {
                                                     </button>
                                                 )}
                                             </div> */}
-                                            <div className="text-base ">
+                                            <div className="text-base hidden md:block ">
                                                 Price
                                             </div>
                                         </div>
@@ -75,8 +75,7 @@ const DeliShoppingCart = () => {
                                             />
                                         ))}
                                     </div>
-                                    <hr className="mx-3 border-gray-200" />
-                                    <div className="flex justify-between items-center px-4 py-4">
+                                    <div className="flex flex-col md:flex-row justify-between items-center px-4 py-2 gap-2">
                                         {cart.quantity === 0 ||
                                         cart.length === 0 ? (
                                             ""
@@ -91,23 +90,24 @@ const DeliShoppingCart = () => {
                                             </span>
                                         )}
                                         <span className="text-lg font-semibold">
-                                            Subtotal (
                                             <span className="text-sm font-medium">
-                                                Total Items in cart:{" "}
+                                                Total Items:{" "}
                                                 <span className="text-lg">
                                                     {<TotalQuantity />}
                                                 </span>
                                             </span>
-                                            )
                                         </span>
                                         <span className="font-bold text-lg">
+                                            <span className="text-base font-medium">
+                                                Subtotal:{" "}
+                                            </span>
                                             ₹{<TotalCost />}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             {/* TODO: Add Checked out button here */}
-                            <div className="h-fit bg-white rounded-xl md:mt-0 mt-5">
+                            <div className=" bg-white rounded-xl md:mt-0 mt-5">
                                 <CartCheckout
                                     totalPrice={totalPrice}
                                     totalQuantity={cart.length}

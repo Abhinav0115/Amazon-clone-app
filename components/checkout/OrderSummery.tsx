@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PriceWithDeliveryCharge, TotalCost } from "../common/Total";
 import { useAppDispatch, useAppSelector } from "@/utils/hooks/redux-hooks";
 import { getCart } from "@/store/slices/cartSlice";
@@ -6,6 +6,7 @@ import { supabase } from "@/utils/supabase/client";
 import { stripeCheckout } from "./stripe-checkout";
 import { useRouter } from "next/navigation";
 import { addToOrder, getOrder } from "@/store/slices/orderSlice";
+import { useSupabase } from "@/utils/hooks/useSupabase";
 
 const OrderSummery = () => {
     const cart = useAppSelector(getCart);
@@ -32,8 +33,12 @@ const OrderSummery = () => {
         createStripeSession();
     };
 
+    const { UserData, getUserData } = useSupabase();
     // console.log("cart", cart);
     // console.log("order", order);
+    useEffect(() => {
+        getUserData();
+    }, [getUserData]);
 
     return (
         <div className="p-2">
@@ -73,19 +78,32 @@ const OrderSummery = () => {
                         </div>
                     </div>
                     <div className="mx-3 mb-2">
-                        {cart.length === 0 ? (
-                            <button
-                                className="focus:outline-none text-white bg-amazon-blue hover:hover:bg-[#509ed2] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
-                                onClick={() => router.push("/")}
-                            >
-                                Add Items to Cart
-                            </button>
+                        {UserData ? (
+                            <>
+                                {cart.length === 0 ? (
+                                    <button
+                                        className="focus:outline-none text-white bg-amazon-blue hover:hover:bg-[#509ed2] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
+                                        onClick={() => router.push("/")}
+                                    >
+                                        Add Items to Cart
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="focus:outline-none text-white bg-amazon-primary hover:hover:bg-[#ffa052] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
+                                        onClick={handlePlaceOrder}
+                                    >
+                                        Place Your Order
+                                    </button>
+                                )}
+                            </>
                         ) : (
                             <button
-                                className="focus:outline-none text-white bg-amazon-primary hover:hover:bg-[#ffa052] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
-                                onClick={handlePlaceOrder}
+                                className="focus:outline-none text-black bg-amber-300 hover:hover:bg-amber-400 focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 w-full rounded-lg text-lg shadow "
+                                onClick={() => {
+                                    router.push("/user/signin");
+                                }}
                             >
-                                Place Your Order
+                                Sign In to Proceed
                             </button>
                         )}
                     </div>

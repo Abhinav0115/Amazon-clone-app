@@ -9,15 +9,15 @@ interface singleProductProps {
 
 const SingleProduct = ({ singleProduct }: singleProductProps) => {
     return (
-        <div className="w-[90%] mx-auto mt-20 ">
-            <div className="flex justify-between gap-2">
-                <div className="md:w-[35%] flex items-center justify-center rounded-3xl">
+        <div className="w-[90%] mx-auto my-16 ">
+            <div className="flex justify-between flex-col md:flex-row gap-2">
+                <div className="md:w-[35%] flex items-center justify-center rounded-lg">
                     <Image
                         src={singleProduct?.image}
                         alt="product"
                         width={400}
                         height={300}
-                        className="mix-blend-multiply w-full h-[70%] rounded-3xl"
+                        className="mix-blend-multiply w-full h-[70%] rounded-xl"
                     />
                 </div>
                 <div className=" md:w-[60%] px-2 flex flex-col gap-3">

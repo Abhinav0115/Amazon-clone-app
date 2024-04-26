@@ -29,7 +29,7 @@ const CartProduct = ({ product }: any) => {
     const dispatch = useAppDispatch();
 
     return (
-        <div className="flex justify-between items-center px-2 py-2 border-b-2 my-2">
+        <div className="flex flex-col gap-5 md:flex-row justify-between items-center px-2 py-2 border-b-2 my-2">
             <div className="flex items-center gap-5">
                 {/* TODO: rebuild */}
                 {/* <input
@@ -39,18 +39,18 @@ const CartProduct = ({ product }: any) => {
                     className="w-4 aspect-square border border-gray-500 rounded-md focus:ring-0 focus:ring-gray-500 focus:outline-none"
                     onChange={handleCheckboxChange}
                 /> */}
-                <div className="flex items-center gap-10">
-                    <div className="w-[25%] flex items-center justify-center h-48 bg-gray-200 rounded-md relative">
+                <div className="flex w-full items-center gap-5 md:gap-10 flex-col md:flex-row">
+                    <div className=" w-fit md:w-[25%] flex items-center justify-center h-48 bg-gray-100 rounded-md relative">
                         <Image
                             src={product.image}
                             alt={product.title}
                             height={200}
                             width={480}
-                            className="mix-blend-multiply w-fit h-40 p-1"
+                            className="mix-blend-multiply w-fit h-44 p-2 "
                             objectFit="contain"
                         />
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 text-center md:text-start">
                         <Link
                             // href={"/product/" + product.id}
                             href={"/"}
@@ -72,13 +72,13 @@ const CartProduct = ({ product }: any) => {
                                 {/* <ProductRating ratings={product.rating} /> */}
                             </div>
                         </div>
-                        <div className="flex text-sm items-center gap-4">
-                            <div className="flex items-center bg-gray-200 w-fit px-1 rounded-full gap-1 ">
+                        <div className="flex flex-col md:flex-row text-sm items-center gap-4">
+                            <div className="flex items-center bg-gray-200 w-fit rounded-full gap-1 ">
                                 {/* <span className="font-medium">Qty:</span> */}
                                 <div className="flex items-center gap-2">
                                     <button
                                         // disabled={quantity === 0}
-                                        className="text-2xl disabled:text-red-300 font-medium px-1 rounded-lg text-red-500"
+                                        className="text-3xl md:text-2xl  rounded-l-full disabled:text-red-300 font-medium px-2.5 pr-1.5 text-red-500 hover:bg-red-600/20"
                                         onClick={() => {
                                             dispatch(
                                                 decrementQuantity(product.id)
@@ -93,11 +93,11 @@ const CartProduct = ({ product }: any) => {
                                     >
                                         -
                                     </button>
-                                    <p className="text-base font-medium ">
+                                    <p className="text-lg font-medium select-none">
                                         {product.quantity}
                                     </p>{" "}
                                     <button
-                                        className="text-2xl font-medium text-blue-800 px-1 rounded-lg"
+                                        className="text-3xl md:text-2xl rounded-r-full font-medium text-blue-800 px-2.5 pl-1.5 hover:bg-green-400/30"
                                         onClick={() => {
                                             dispatch(
                                                 incrementQuantity(product.id)
@@ -109,7 +109,9 @@ const CartProduct = ({ product }: any) => {
                                     </button>
                                 </div>
                             </div>
-                            <span className="opacity-40">|</span>
+                            <span className="opacity-40 hidden md:block">
+                                |
+                            </span>
                             <div className="flex gap-3 text-nowrap">
                                 <div>
                                     <button

@@ -88,7 +88,7 @@ const OrderSuccess = () => {
                     Home
                 </Link>
                 <Link
-                    href={"/auth/signin"}
+                    href={"/user/signin"}
                     className="focus:outline-none text-white bg-green-600 hover:hover:bg-[#46b44d] focus:ring-4 focus:ring-yellow-300 font-semibold p-1.5 dark:focus:ring-yellow-900 rounded-lg text-lg shadow w-32"
                 >
                     Sign In

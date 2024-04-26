@@ -109,7 +109,7 @@ const SigninPage = () => {
                         <span className="mx-1">New to Amazon?</span>
                         <hr className="w-1/3" />
                     </div>
-                    <Link href="/auth/signin" className="  ">
+                    <Link href="/user/signin" className="  ">
                         <div className=" bg-gray-100 hover:bg-gray-200 rounded-lg shadow text-sm text-gray-500 p-3 hover:font-medium tracking-tight transition-all duration-150 ">
                             Create your Amazon account
                         </div>

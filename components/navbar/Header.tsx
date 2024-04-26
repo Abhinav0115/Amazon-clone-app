@@ -57,7 +57,6 @@ const Header = () => {
         getUserData();
     }, []);
 
-    // console.log("UserData", UserData);
 
     return (
         <>
@@ -72,9 +71,12 @@ const Header = () => {
                     />
                 </Link>
                 <nav className="md:flex flex-1 h-full gap-10 hidden">
-                    <div className="flex items-center justify-center text-base font-semibold cursor-pointer tracking-tight" onClick={()=> {
-                        router.push("/")
-                    }}>
+                    <div
+                        className="flex items-center justify-center text-base font-semibold cursor-pointer tracking-tight"
+                        onClick={() => {
+                            router.push("/");
+                        }}
+                    >
                         Category
                         {/* <BiChevronDown /> */}
                     </div>
@@ -123,7 +125,7 @@ const Header = () => {
                                     <div
                                         className="hover:underline font-medium cursor-pointer"
                                         onClick={() => {
-                                            router.push("/auth/signin");
+                                            router.push("/user/signin");
                                         }}
                                     >
                                         Sign In
@@ -182,7 +184,7 @@ const Header = () => {
                     <button
                         onClick={async () => {
                             const { error } = await supabase.auth.signOut();
-                            router.push("/auth/signin");
+                            router.push("/user/signin");
                         }}
                         className="text-primary font-medium text-base p-0.5 px-2 text-nowrap hover:underline rounded hover:text-amazon-secondary"
                     >

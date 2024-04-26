@@ -81,7 +81,7 @@ const AddToCartContainer = ({ singleProduct }: singleProductProps) => {
             </div>
             <div className="flex flex-col gap-2 mx-2">
                 <button
-                    className="bg-amazon-primary hover:bg-[#ff9f50] rounded-full p-1.5"
+                    className="bg-amazon-primary hover:bg-[#ff9f50] rounded-full p-2.5 md:p-1.5"
                     onClick={() => {
                         dispatch(addToCart(singleProduct));
                         router.push("/cart");
@@ -90,7 +90,7 @@ const AddToCartContainer = ({ singleProduct }: singleProductProps) => {
                     Add to Cart
                 </button>
                 <button
-                    className="bg-amazon-secondary hover:bg-[#ffc700] rounded-full p-1.5"
+                    className="bg-amazon-secondary hover:bg-[#ffc700] rounded-full p-2.5 md:p-1.5"
                     onClick={() => {
                         dispatch(addToCart(singleProduct));
                         router.push("/checkout");

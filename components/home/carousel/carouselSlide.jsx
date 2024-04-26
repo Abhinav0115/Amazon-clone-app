@@ -25,14 +25,14 @@ const CarouselSlide = ({ SlideImage }) => {
             loop={true}
             // slideRef={slideRef}
             navigation={({ setActiveIndex, activeIndex, length }) => (
-                <div className="absolute hidden md:flex md:top-[50%] left-2/4 z-50 -translate-x-2/4 gap-2">
+                <div className="absolute flex bottom-1  md:top-[50%] left-2/4 z-50 -translate-x-2/4 gap-2">
                     {new Array(length).fill("").map((_, i) => (
                         <span
                             key={i}
                             className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
                                 activeIndex === i
                                     ? "w-8 bg-amazon-secondary"
-                                    : "w-4 bg-white/50"
+                                    : "w-4 bg-gray-400/50"
                             }`}
                             onClick={() => setActiveIndex(i)}
                         />
@@ -45,7 +45,7 @@ const CarouselSlide = ({ SlideImage }) => {
                     color="white"
                     size="lg"
                     onClick={handlePrev}
-                    className="!absolute top-1/3 left-4 -translate-y-2/4 text-5xl hover:bg-gray-800 hover:bg-opacity-30"
+                    className="!absolute hidden md:block top-1/3 left-4 -translate-y-2/4 text-5xl text-white hover:bg-gray-800 hover:bg-opacity-30"
                 >
                     <HiOutlineArrowCircleLeft />
                 </IconButton>
@@ -56,7 +56,7 @@ const CarouselSlide = ({ SlideImage }) => {
                     color="white"
                     size="lg"
                     onClick={handleNext}
-                    className="!absolute top-1/3 !right-4 -translate-y-2/4 text-5xl hover:bg-gray-800 hover:bg-opacity-30"
+                    className="!absolute hidden md:block top-1/3 !right-4 -translate-y-2/4 text-white text-5xl hover:bg-gray-800 hover:bg-opacity-30"
                 >
                     <HiOutlineArrowCircleRight />
                 </IconButton>

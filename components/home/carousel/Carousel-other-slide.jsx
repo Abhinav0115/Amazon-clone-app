@@ -32,7 +32,7 @@ const CarouselOtherSlide = ({ SlideImage }) => {
                             className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
                                 activeIndex === i
                                     ? "w-8 bg-amazon-secondary"
-                                    : "w-4 bg-white/50"
+                                    : "w-4 bg-gray-500/50"
                             }`}
                             onClick={() => setActiveIndex(i)}
                         />
@@ -45,7 +45,7 @@ const CarouselOtherSlide = ({ SlideImage }) => {
                     color="white"
                     size="lg"
                     onClick={handlePrev}
-                    className="!absolute top-2/4 left-4 -translate-y-2/4 text-5xl text-gray-300 hover:bg-gray-800 hover:bg-opacity-30"
+                    className="!absolute hidden md:block top-2/4 left-4 -translate-y-2/4 text-5xl text-gray-300 hover:bg-gray-800 hover:bg-opacity-30"
                 >
                     <HiOutlineArrowCircleLeft />
                 </IconButton>
@@ -56,7 +56,7 @@ const CarouselOtherSlide = ({ SlideImage }) => {
                     color="white"
                     size="lg"
                     onClick={handleNext}
-                    className="!absolute top-2/4 !right-4 -translate-y-2/4 text-5xl text-gray-300 hover:bg-gray-800 hover:bg-opacity-30"
+                    className="!absolute hidden md:block top-2/4 right-4 -translate-y-2/4 text-5xl text-gray-300 hover:bg-gray-800 hover:bg-opacity-30"
                 >
                     <HiOutlineArrowCircleRight />
                 </IconButton>

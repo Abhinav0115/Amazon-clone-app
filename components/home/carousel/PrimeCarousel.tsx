@@ -16,7 +16,7 @@ const PrimeVideos = () => {
 
     return (
         <>
-            <div className="w-full h-[35vh] sm:h-[50vh] md:h-[60vh]">
+            <div className="w-full h-[30vh] sm:h-[45vh] md:h-[60vh]">
                 <CarouselOtherSlide SlideImage={PrimeCarouselImage} />
             </div>
         </>

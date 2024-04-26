@@ -13,24 +13,26 @@ const CheckoutPage = () => {
     const cart = useAppSelector(getCart);
 
     return (
-        <div className="bg-blue-gray-50">
+        <div className="bg-blue-gray-50 pb-8 md:pb-4">
             <div className="space-y-6">
-                <div className="flex justify-between items-center rounded-b-xl bg-white mx-10 p-2 px-10 border-b-2">
-                    <Link href={"/"}>
+                <div className="flex justify-between items-center rounded-b-xl bg-white mx-2 px-3 pl-0 md:mx-10 md:px-10 border-b-2">
+                    <Link href={"/"} className="mt-1">
                         <Image
                             src={amazonLogo}
                             alt="amazon logo"
-                            width={130}
+                            width={110}
                             height={50}
                             className=""
                         />
                     </Link>
-                    <div className="font-bold text-3xl">Checkout</div>
+                    <div className="font-bold text-2xl md:text-3xl">
+                        Checkout
+                    </div>
                     <div className="text-lg text-gray-500">
                         <FaLock />
                     </div>
                 </div>
-                <div className="grid md:grid-cols-4 grid-cols-1 gap-5 w-[90%] mx-auto ">
+                <div className="grid md:grid-cols-4 grid-cols-1 space-y-5 md:space-y-0 md:gap-5 w-[90%] mx-auto ">
                     <div className="col-span-3">
                         <div className="flex flex-col gap-5 p-4 rounded-lg bg-white">
                             <div className="">

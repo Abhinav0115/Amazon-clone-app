@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 const Page = () => {
     const router = useRouter();
 
-    return router.push("/auth/signin");
+    return router.push("/user/signin");
 };
 
 export default Page;

@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const SigninAuth = () => {
     return (
-        <div className="w-[25%] mx-auto ">
+        <div className="w-5/6 md:w-1/4 mx-auto ">
             {/* <Auth supabaseClient={supabase()} appearance={{ theme: ThemeSupa }} /> */}
             <div className="w-[60%] mx-auto ">
                 <Link href={"/"} className="cursor-pointer">
@@ -25,12 +25,18 @@ const SigninAuth = () => {
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
                 providers={["github"]}
-                // providers={["google", "github", "facebook", "twitter"]}
+                // providers={["google", "github", "facebook", "twitter", "discord"]}
                 // theme="authentic-dark"
                 // socialLayout="horizontal"
                 magicLink={true}
-                theme="authentic-dark"
+                // redirectTo="#"
+                // queryParams={{
+                //     access_type: "offline",
+                //     prompt: "consent",
+                //     // hd: "gmail.com",
+                // }}
                 // view="sign_up"
+                // view={props.view === "sign_up" ? "sign_up" : "sign_in"}
             />
         </div>
     );
