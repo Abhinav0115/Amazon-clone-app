@@ -70,6 +70,10 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
         setOpen(open === value ? 0 : value);
     };
 
+    //naming
+    const nameing =
+        "loreum ipsum dolor sit amet, consectetur adipiscing elit. , consectetur adipiscing elit. ";
+
     //drawer open and close
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => setIsDrawerOpen(false);
@@ -144,7 +148,17 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                             }
                                         >
                                             Hello,{" "}
-                                            {UserData?.user_metadata?.name}
+                                            {UserData?.user_metadata?.name?.split(
+                                                " "
+                                            )[0] +
+                                                " " +
+                                                UserData?.user_metadata?.name?.split(
+                                                    " "
+                                                )[1] +
+                                                " " +
+                                                UserData?.user_metadata?.name?.split(
+                                                    " "
+                                                )[2]}
                                         </div>
                                     ) : (
                                         <div
@@ -157,7 +171,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     )}
                                 </div>
                             ) : (
-                                ""
+                                " "
                             )}
                         </span>
                     </div>
