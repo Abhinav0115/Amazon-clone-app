@@ -143,11 +143,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                             }
                                         >
                                             Hello,{" "}
-                                            {
-                                                UserData?.user_metadata?.name?.split(
-                                                    " "
-                                                )[0]
-                                            }
+                                            {UserData?.user_metadata?.name}
                                         </div>
                                     ) : (
                                         <div
@@ -598,8 +594,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     const { error } =
                                         await supabase.auth.signOut();
                                     router.push("/user/signin");
-                                    closeDrawer();
+                                    closeDrawer;
                                 }}
+                                className="text-black"
                             >
                                 <ListItemPrefix>
                                     <ArrowRightStartOnRectangleIcon
@@ -611,9 +608,10 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </ListItem>
                         ) : (
                             <ListItem
+                                className="text-black"
                                 onClick={() => {
                                     router.push("/user/signin");
-                                    closeDrawer();
+                                    closeDrawer;
                                 }}
                             >
                                 <ListItemPrefix>
