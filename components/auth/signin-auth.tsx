@@ -24,7 +24,7 @@ const SigninAuth = () => {
             <Auth
                 supabaseClient={supabase}
                 appearance={{ theme: ThemeSupa }}
-                providers={["github"]}
+                providers={["github", "google"]}
                 // providers={["google", "github", "facebook", "twitter", "discord"]}
                 // theme="authentic-dark"
                 // socialLayout="horizontal"
