@@ -42,6 +42,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/utils/hooks/useSupabase";
+import { supabase } from "@/utils/supabase/client";
 
 export function SidebarWithBurgerMenu({ cartProducts }) {
     const [open, setOpen] = useState(0);
