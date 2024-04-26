@@ -12,7 +12,7 @@ const HomeGrid = ({ products, title, category }: any) => {
                 <h2
                     className="text-2xl text-center font-bold mb-3 cursor-pointer hover:underline"
                     onClick={() => router.push(`/search/${category}`)}
-                    title={category}
+                    title={title}
                 >
                     {title}
                 </h2>

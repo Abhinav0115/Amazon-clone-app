@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     IconButton,
     Typography,
@@ -21,9 +21,10 @@ import {
     BoltIcon,
     UserCircleIcon,
     LifebuoyIcon,
-    ShoppingCartIcon,
 } from "@heroicons/react/24/solid";
 import {
+    ShoppingCartIcon,
+    Cog6ToothIcon,
     CubeTransparentIcon,
     UserIcon,
     ShoppingBagIcon,
@@ -39,21 +40,57 @@ import {
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSupabase } from "@/utils/hooks/useSupabase";
 
 export function SidebarWithBurgerMenu({ cartProducts }) {
     const [open, setOpen] = useState(0);
     const [openAlert, setOpenAlert] = useState(true);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [notiValue, setNotiValue] = useState(0);
-    const [islogin, setIslogin] = useState(false);
+
+    //search query state
+    const [searchQuery, setSearchQuery] = useState("");
+
+    //disable list item
     const isDisabled = true;
 
+    //router
+    const router = useRouter();
+
+    //supabase products hook
+    // const { getAllProducts, products } = useSupabase();
+
+    //supabase user hook
+    const { UserData, getUserData } = useSupabase();
+
+    //open and close accordion
     const handleOpen = (value) => {
         setOpen(open === value ? 0 : value);
     };
 
+    //drawer open and close
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => setIsDrawerOpen(false);
+
+    //search
+    const handleSearch = () => {
+        router.push(`/search/${searchQuery}`);
+        setSearchQuery("");
+    };
+
+    //search on enter key press
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+            closeDrawer();
+        }
+    };
+
+    useEffect(() => {
+        // getAllProducts();
+        getUserData();
+    }, []);
 
     return (
         <>
@@ -86,7 +123,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             <XMarkIcon className="h-6 w-6 stroke-2" />
                         </IconButton>
                     </div>
-                    <div className="mb-2 flex items-center px-4">
+                    <div className="flex items-center px-4">
                         <Image
                             src="/amazon-logo.png"
                             alt="brand"
@@ -95,10 +132,56 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             height={240}
                         />
                     </div>
+                    <div className=" text-center mb-2">
+                        <span>
+                            {UserData ? (
+                                <div className="">
+                                    {UserData?.user_metadata?.name ? (
+                                        <div
+                                            title={
+                                                UserData?.user_metadata?.name
+                                            }
+                                        >
+                                            Hello,{" "}
+                                            {
+                                                UserData?.user_metadata?.name?.split(
+                                                    " "
+                                                )[0]
+                                            }
+                                        </div>
+                                    ) : (
+                                        <div
+                                            className=""
+                                            style={{ fontSize: "10px" }}
+                                            title={UserData.email}
+                                        >
+                                            Hello, {UserData.email}
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div
+                                    className="hover:underline font-medium cursor-pointer"
+                                    onClick={() => {
+                                        router.push("/user/signin");
+                                    }}
+                                >
+                                    Sign In
+                                </div>
+                            )}
+                        </span>
+                    </div>
                     <div className="p-2">
                         <Input
                             icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                             label="Search"
+                            type="text"
+                            placeholder="Search for products, category and more"
+                            name="search"
+                            value={searchQuery}
+                            id="search"
+                            onKeyUp={(e) => handleKeyPress(e)}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
                     <List>
@@ -134,7 +217,27 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </ListItem>
                             <AccordionBody className="py-1">
                                 <List className="p-0">
-                                    <ListItem>
+                                    <ListItem
+                                        onClick={() => {
+                                            closeDrawer();
+                                            router.push("/");
+                                        }}
+                                    >
+                                        <ListItemPrefix>
+                                            <ChevronRightIcon
+                                                strokeWidth={2}
+                                                className="h-4 w-5"
+                                            />
+                                        </ListItemPrefix>
+                                        Home
+                                    </ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                        onClick={() => {
+                                            closeDrawer();
+                                            router.push("/");
+                                        }}
+                                    >
                                         <ListItemPrefix>
                                             <ChevronRightIcon
                                                 strokeWidth={2}
@@ -143,7 +246,13 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Best Sellers
                                     </ListItem>
-                                    <ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                        onClick={() => {
+                                            closeDrawer();
+                                            router.push("/");
+                                        }}
+                                    >
                                         <ListItemPrefix>
                                             <ChevronRightIcon
                                                 strokeWidth={2}
@@ -275,42 +384,6 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                                 className="h-4 w-5"
                                             />
                                         </ListItemPrefix>
-                                        Electronics
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon
-                                                strokeWidth={2}
-                                                className="h-4 w-5"
-                                            />
-                                        </ListItemPrefix>
-                                        Mobile
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon
-                                                strokeWidth={2}
-                                                className="h-4 w-5"
-                                            />
-                                        </ListItemPrefix>
-                                        Laptop
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon
-                                                strokeWidth={2}
-                                                className="h-4 w-5"
-                                            />
-                                        </ListItemPrefix>
-                                        Computer
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon
-                                                strokeWidth={2}
-                                                className="h-4 w-5"
-                                            />
-                                        </ListItemPrefix>
                                         Men&apos;s Clothing
                                     </ListItem>
                                     <ListItem>
@@ -329,9 +402,54 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                                 className="h-4 w-5"
                                             />
                                         </ListItemPrefix>
-                                        Home
+                                        Electronics
                                     </ListItem>
                                     <ListItem>
+                                        <ListItemPrefix>
+                                            <ChevronRightIcon
+                                                strokeWidth={2}
+                                                className="h-4 w-5"
+                                            />
+                                        </ListItemPrefix>
+                                        jewelry
+                                    </ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
+                                        <ListItemPrefix>
+                                            <ChevronRightIcon
+                                                strokeWidth={2}
+                                                className="h-4 w-5"
+                                            />
+                                        </ListItemPrefix>
+                                        Mobile
+                                    </ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
+                                        <ListItemPrefix>
+                                            <ChevronRightIcon
+                                                strokeWidth={2}
+                                                className="h-4 w-5"
+                                            />
+                                        </ListItemPrefix>
+                                        Laptop
+                                    </ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
+                                        <ListItemPrefix>
+                                            <ChevronRightIcon
+                                                strokeWidth={2}
+                                                className="h-4 w-5"
+                                            />
+                                        </ListItemPrefix>
+                                        Computer
+                                    </ListItem>
+
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
                                         <ListItemPrefix>
                                             <ChevronRightIcon
                                                 strokeWidth={2}
@@ -340,7 +458,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Kitchen
                                     </ListItem>
-                                    <ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
                                         <ListItemPrefix>
                                             <ChevronRightIcon
                                                 strokeWidth={2}
@@ -349,7 +469,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Grocery
                                     </ListItem>
-                                    <ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
                                         <ListItemPrefix>
                                             <ChevronRightIcon
                                                 strokeWidth={2}
@@ -393,7 +515,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </ListItem>
                             <AccordionBody className="py-1">
                                 <List className="p-0">
-                                    <ListItem>
+                                    <ListItem
+                                        disabled={isDisabled ? true : false}
+                                    >
                                         <ListItemPrefix>
                                             <UserIcon
                                                 strokeWidth={2}
@@ -414,7 +538,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         Wish List
                                     </ListItem>
                                     <Link href="/cart" onClick={closeDrawer}>
-                                        <ListItem>
+                                        <ListItem
+                                            disabled={isDisabled ? true : false}
+                                        >
                                             <ListItemPrefix>
                                                 <ShoppingBagIcon
                                                     strokeWidth={2}
@@ -452,7 +578,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </ListItem>
                         </Link>
                         <hr className="my-2 border-blue-gray-50" />
-                        <ListItem disabled={isDisabled ? true : false}>
+                        <ListItem className="hidden">
                             <ListItemPrefix>
                                 <InboxIcon className="h-6 w-6" />
                             </ListItemPrefix>
@@ -467,31 +593,43 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 />
                             </ListItemSuffix>
                         </ListItem>
-                        {/* <ListItem>
+                        <ListItem className="hidden">
                             <ListItemPrefix>
                                 <Cog6ToothIcon className="h-5 w-5" />
                             </ListItemPrefix>
                             Settings
-                        </ListItem> */}
-                        {islogin ? (
-                            <ListItem>
+                        </ListItem>
+                        {UserData !== null ? (
+                            <ListItem
+                                onClick={async () => {
+                                    const { error } =
+                                        await supabase.auth.signOut();
+                                    router.push("/user/signin");
+                                    closeDrawer();
+                                }}
+                            >
                                 <ListItemPrefix>
                                     <ArrowRightStartOnRectangleIcon
                                         className="h-6 w-6"
                                         strokeWidth={2}
                                     />
                                 </ListItemPrefix>
-                                Log Out
+                                Sign Out
                             </ListItem>
                         ) : (
-                            <ListItem>
+                            <ListItem
+                                onClick={() => {
+                                    router.push("/user/signin");
+                                    closeDrawer();
+                                }}
+                            >
                                 <ListItemPrefix>
                                     <ArrowLeftEndOnRectangleIcon
                                         className="h-6 w-6"
                                         strokeWidth={2}
                                     />
                                 </ListItemPrefix>
-                                Log In
+                                Sign In
                             </ListItem>
                         )}
                     </List>
