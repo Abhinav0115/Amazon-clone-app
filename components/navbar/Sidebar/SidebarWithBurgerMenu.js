@@ -160,14 +160,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     )}
                                 </div>
                             ) : (
-                                <div
-                                    className="hover:underline font-medium cursor-pointer"
-                                    onClick={() => {
-                                        router.push("/user/signin");
-                                    }}
-                                >
-                                    Sign In
-                                </div>
+                                ""
                             )}
                         </span>
                     </div>
