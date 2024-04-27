@@ -107,7 +107,7 @@ const DeliShoppingCart = () => {
                                 </div>
                             </div>
                             {/* TODO: Add Checked out button here */}
-                            <div className=" bg-white rounded-xl md:mt-0 mt-5">
+                            <div className=" bg-white rounded-xl md:mt-0 mt-5 h-fit">
                                 <CartCheckout
                                     totalPrice={totalPrice}
                                     totalQuantity={cart.length}
