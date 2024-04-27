@@ -44,12 +44,12 @@ const DeliShoppingCart = () => {
                                         <div className="flex justify-end px-6 items-center py-1">
                                             {/* <div className="text-xs">
                                                 {itemSelected === 0 ? (
-                                                    <p className="tracking-tight">
+                                                    <div className="tracking-tight">
                                                         No item selected.{" "}
                                                         <button className=" text-blue-800">
                                                             Select All Items
                                                         </button>
-                                                    </p>
+                                                    </div>
                                                 ) : itemSelected > 0 &&
                                                   itemSelected < cart.length ? (
                                                     <button>

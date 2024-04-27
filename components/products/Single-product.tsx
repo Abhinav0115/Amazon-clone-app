@@ -4,7 +4,15 @@ import ProductRating from "../rating/Rating";
 import AddToCartContainer from "../Add-to-cart";
 
 interface singleProductProps {
-    singleProduct: any; // Replace 'any' with the actual type of singleProduct
+    singleProduct: {
+        id: number;
+        title: string;
+        description: string;
+        category: string;
+        image: string;
+        price: number | string | null | undefined;
+        rating: number | string | null | undefined;
+    };
 }
 
 const SingleProduct = ({ singleProduct }: singleProductProps) => {
@@ -14,7 +22,7 @@ const SingleProduct = ({ singleProduct }: singleProductProps) => {
                 <div className="md:w-[35%] flex items-center justify-center rounded-lg">
                     <Image
                         src={singleProduct?.image}
-                        alt="product"
+                        alt={singleProduct?.title}
                         width={400}
                         height={300}
                         className="mix-blend-multiply w-full h-[70%] rounded-xl"

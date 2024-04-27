@@ -10,6 +10,9 @@ import AppleCards from "./carousel/AppleCarousel";
 import PrimeVideos from "./carousel/PrimeCarousel";
 import { useRouter } from "next/navigation";
 import { clearOrder } from "@/store/slices/orderSlice";
+interface CategoryProps {
+    category: string;
+}
 
 const HomePage = () => {
     const { getAllProducts, products } = useSupabase();
@@ -24,16 +27,16 @@ const HomePage = () => {
     }, []);
 
     const MensProducts = products.filter(
-        (product: any) => product.category === "men's clothing"
+        (product: CategoryProps) => product.category === "men's clothing"
     );
     const WomensProducts = products.filter(
-        (product: any) => product.category === "women's clothing"
+        (product: CategoryProps) => product.category === "women's clothing"
     );
     const ElectronicsProducts = products.filter(
-        (product: any) => product.category === "electronics"
+        (product: CategoryProps) => product.category === "electronics"
     );
     const JewelryProducts = products.filter(
-        (product: any) => product.category === "jewelry"
+        (product: CategoryProps) => product.category === "jewelry"
     );
 
     return (

@@ -6,7 +6,15 @@ import { addToCart } from "@/store/slices/cartSlice";
 import { useRouter } from "next/navigation";
 
 interface singleProductProps {
-    singleProduct: any; // Replace 'any' with the actual type of singleProduct
+    singleProduct: {
+        id: number;
+        title: string;
+        description: string;
+        category: string;
+        image: string;
+        price: number | string | null | undefined;
+        rating: number | string | null | undefined;
+    };
 }
 const AddToCartContainer = ({ singleProduct }: singleProductProps) => {
     //Date --------------------------------------------------------
@@ -69,10 +77,10 @@ const AddToCartContainer = ({ singleProduct }: singleProductProps) => {
                         Details
                     </span>{" "}
                 </h1>
-                <p className="text-[#147C8F] flex items-center gap-1">
+                <div className="text-[#147C8F] flex items-center gap-1">
                     <GrLocation className="text-[#147C8F] text-lg" />
                     Deliver to user - New Delhi 120121
-                </p>
+                </div>
                 <div className="text-green-500 font-bold">IN STOCK</div>
                 <div className="flex justify-between px-1">
                     <h1 className="text-sm">Sold by</h1>

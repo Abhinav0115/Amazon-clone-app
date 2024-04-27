@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
-import { BiChevronDown, BiMenu } from "react-icons/bi";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { BiMenu } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { SidebarWithBurgerMenu } from "./Sidebar/SidebarWithBurgerMenu";
 
@@ -46,10 +45,10 @@ const Header = () => {
         "Gift Ideas",
         "Electronics",
         "Mobiles",
-        "Home",
+        // "Home",
         "Fashion",
         "Appliances",
-        "Toys",
+        // "Toys",
         "Books",
     ];
 
@@ -59,14 +58,14 @@ const Header = () => {
 
     return (
         <>
-            <div className="px-6 flex flex-1 text-white bg-amazon-dark w-full min-h-[10vh] h-fit items-center gap-10 justify-between">
+            <div className="px-6 flex flex-1 text-white bg-amazon-dark w-full min-h-[8vh] md:min-h-[11vh] h-fit items-center gap-10 justify-between">
                 <Link href={"/"}>
                     <Image
                         src={amazonLogoWhite}
                         alt="amazon logo"
                         width={540}
                         height={540}
-                        className="cursor-pointer mt-3 w-28 h-10 sm:w-24 md:w-20 md:h-6"
+                        className="cursor-pointer mt-3 py-1 md:py-0 w-28 h-10 sm:w-24 md:w-20 md:h-6"
                     />
                 </Link>
                 <nav className="md:flex flex-1 h-full gap-10 hidden">
@@ -165,24 +164,44 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="px-5 lg:px-1 flex flex-1 p-1 text-gray-200 bg-amazon-gray w-full min-h-[5vh] h-fit items-center gap-10 justify-between text-xs tracking-tight">
-                <div className="flex gap-1 items-left justify-start w-full">
+            <div className="px-3 pr-5 md:px-3 flex flex-1 p-1 text-gray-200 bg-amazon-gray w-full min-h-[5vh] h-fit items-center gap-5 justify-between text-sm ">
+                <div className="flex gap-1 items-left justify-start w-full overflow-hidden">
                     <Link
                         href={"/"}
-                        className="flex items-center p-0.5 pr-2 hover:outline outline-1 rounded hover:bg-gray-700"
+                        className="flex items-center p-0.5 rounded "
                     >
-                        <BiMenu className="text-2xl" />
-                        All
+                        <span className="outline-1 hover:bg-gray-700 p-1 px-1.5 flex items-center rounded-md">
+                            <BiMenu className="text-2xl" />
+                            All
+                        </span>
                     </Link>
                     {itemList.map((item, index) => (
                         <Link
                             href={"/"}
                             key={index}
-                            className="p-0.5 px-2 hover:outline outline-1 rounded mt-1 hover:bg-gray-800 hidden lg:block"
+                            className="p-0.5 px-2 hover:outline outline-1 rounded mt-2 text-nowrap hover:bg-gray-800 hidden md:block text-xs "
                         >
                             {item}
                         </Link>
                     ))}
+                    <div className="flex md:hidden flex-1 ms-3 my-2">
+                        <input
+                            type="text"
+                            placeholder="Search for products, brands and more"
+                            name="search"
+                            value={searchQuery}
+                            id="search"
+                            onKeyUp={(e) => handleKeyPress(e)}
+                            className="rounded-l-md px-3 text-black h-8 outline-none w-full border-none"
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button
+                            className="h-8 w-12 bg-amazon-primary rounded-r-md outline-none border-none text-2xl flex items-center justify-center hover:bg-amazon-secondary transition-all duration-300"
+                            onClick={handleSearch}
+                        >
+                            <FiSearch />
+                        </button>
+                    </div>
                 </div>
                 {UserData !== null && (
                     <button
@@ -190,7 +209,7 @@ const Header = () => {
                             const { error } = await supabase.auth.signOut();
                             router.push("/user/signin");
                         }}
-                        className="text-primary font-medium text-base p-0.5 px-2 text-nowrap hover:underline rounded hover:text-amazon-secondary"
+                        className="text-primary font-medium text-base p-0.5 px-2 text-nowrap hover:underline rounded hover:text-amazon-secondary hidden md:block"
                     >
                         Sign out
                     </button>

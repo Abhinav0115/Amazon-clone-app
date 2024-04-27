@@ -10,7 +10,7 @@ import {
     Accordion,
     AccordionHeader,
     AccordionBody,
-    Alert,
+    // Alert,
     Input,
     Drawer,
     Card,
@@ -25,7 +25,7 @@ import {
 import {
     ShoppingCartIcon,
     Cog6ToothIcon,
-    CubeTransparentIcon,
+    // CubeTransparentIcon,
     UserIcon,
     ShoppingBagIcon,
     ChevronRightIcon,
@@ -44,7 +44,11 @@ import { useRouter } from "next/navigation";
 import { useSupabase } from "@/utils/hooks/useSupabase";
 import { supabase } from "@/utils/supabase/client";
 
-export function SidebarWithBurgerMenu({ cartProducts }) {
+export function SidebarWithBurgerMenu({
+    cartProducts,
+}: {
+    cartProducts: Array<any>;
+}) {
     const [open, setOpen] = useState(0);
     const [openAlert, setOpenAlert] = useState(true);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -66,7 +70,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
     const { UserData, getUserData } = useSupabase();
 
     //open and close accordion
-    const handleOpen = (value) => {
+    const handleOpen = (value: number) => {
         setOpen(open === value ? 0 : value);
     };
 
@@ -85,7 +89,7 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
     };
 
     //search on enter key press
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: any) => {
         if (e.key === "Enter") {
             handleSearch();
             closeDrawer();
@@ -104,6 +108,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                 size="lg"
                 onClick={openDrawer}
                 className="text-white border-white "
+                placeholder=""
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
             >
                 <Bars3Icon className="h-8 w-8 stroke-2" />
             </IconButton>
@@ -112,11 +119,17 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                 open={isDrawerOpen}
                 onClose={closeDrawer}
                 className="overflow-y-auto "
+                placeholder=""
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
             >
                 <Card
                     color="transparent"
                     shadow={false}
                     className="h-[calc(100vh-2rem)] w-full px-2 pb-4 "
+                    placeholder=""
+                    onPointerEnterCapture={() => {}}
+                    onPointerLeaveCapture={() => {}}
                 >
                     <div className="flex items-center justify-end">
                         <IconButton
@@ -124,6 +137,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             size="md"
                             onClick={closeDrawer}
                             className="text-black border-white "
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
                         >
                             <XMarkIcon className="h-6 w-6 stroke-2" />
                         </IconButton>
@@ -173,7 +189,13 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                     </div>
                     <div className="p-2">
                         <Input
-                            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                            icon={
+                                <MagnifyingGlassIcon
+                                    className="absolute w-10 h-[2.29rem] p-2 rounded-r-md  hover:bg-gray-300 "
+                                    onClick={handleSearch}
+                                />
+                            }
+                            // className=" !border-2"
                             label="Search"
                             type="text"
                             placeholder="Search for products, category and more"
@@ -182,9 +204,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             id="search"
                             onKeyUp={(e) => handleKeyPress(e)}
                             onChange={(e) => setSearchQuery(e.target.value)}
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
+                            crossOrigin=""
                         />
                     </div>
-                    <List>
+                    <List
+                        placeholder=""
+                        onPointerEnterCapture={() => {}}
+                        onPointerLeaveCapture={() => {}}
+                    >
                         <Accordion
                             open={open === 1}
                             icon={
@@ -195,13 +224,29 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     }`}
                                 />
                             }
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
                         >
-                            <ListItem className="p-0 " selected={open === 1}>
+                            <ListItem
+                                className="p-0 "
+                                selected={open === 1}
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <AccordionHeader
                                     onClick={() => handleOpen(1)}
                                     className="border-b-0 p-3"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
                                 >
-                                    <ListItemPrefix>
+                                    <ListItemPrefix
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
                                         <BoltIcon
                                             className="h-6 w-6"
                                             strokeWidth={2}
@@ -210,20 +255,35 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     <Typography
                                         color="blue-gray"
                                         className="mr-auto font-normal "
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
                                         Trending
                                     </Typography>
                                 </AccordionHeader>
                             </ListItem>
                             <AccordionBody className="py-1">
-                                <List className="p-0">
+                                <List
+                                    className="p-0"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <ListItem
                                         onClick={() => {
                                             closeDrawer();
                                             router.push("/");
                                         }}
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -237,8 +297,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                             closeDrawer();
                                             router.push("/");
                                         }}
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -252,8 +319,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                             closeDrawer();
                                             router.push("/");
                                         }}
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -274,17 +348,30 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     }`}
                                 />
                             }
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
                         >
                             <ListItem
                                 className="p-0"
                                 selected={open === 2}
                                 disabled={isDisabled ? true : false}
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
                             >
                                 <AccordionHeader
                                     onClick={() => handleOpen(2)}
                                     className="border-b-0 p-3"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
                                 >
-                                    <ListItemPrefix>
+                                    <ListItemPrefix
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
                                         <LifebuoyIcon
                                             className="h-6 w-6"
                                             strokeWidth={2}
@@ -293,15 +380,31 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     <Typography
                                         color="blue-gray"
                                         className="mr-auto font-normal"
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
                                         Digital Content
                                     </Typography>
                                 </AccordionHeader>
                             </ListItem>
                             <AccordionBody className="py-1">
-                                <List className="p-0">
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                <List
+                                    className="p-0"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -309,8 +412,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Echo & Alexa
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -318,8 +429,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Fire TV
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -327,8 +446,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Kindle
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -336,8 +463,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Prime Video
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -349,6 +484,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </AccordionBody>
                         </Accordion>
                         <Accordion
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
                             open={open === 3}
                             icon={
                                 <ChevronDownIcon
@@ -359,15 +497,31 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 />
                             }
                         >
-                            <ListItem className="p-0" selected={open === 3}>
+                            <ListItem
+                                className="p-0"
+                                selected={open === 3}
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <AccordionHeader
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
                                     onClick={() => handleOpen(3)}
                                     className="border-b-0 p-3"
                                 >
-                                    <ListItemPrefix>
+                                    <ListItemPrefix
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
                                         <AdjustmentsHorizontalIcon className="h-6 w-6" />
                                     </ListItemPrefix>
                                     <Typography
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         color="blue-gray"
                                         className="mr-auto font-normal"
                                     >
@@ -376,9 +530,28 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 </AccordionHeader>
                             </ListItem>
                             <AccordionBody className="py-1">
-                                <List className="p-0">
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                <List
+                                    className="p-0"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                        onClick={() => {
+                                            router.push(
+                                                `/search/men's clothing`
+                                            );
+                                            closeDrawer();
+                                        }}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -386,8 +559,22 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Men&apos;s Clothing
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                        onClick={() => {
+                                            router.push(
+                                                `/search/women's clothing`
+                                            );
+                                            closeDrawer();
+                                        }}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -395,8 +582,20 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Women&apos;s Clothing
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                        onClick={() => {
+                                            router.push(`/search/electronics`);
+                                            closeDrawer();
+                                        }}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -404,8 +603,20 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         </ListItemPrefix>
                                         Electronics
                                     </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
+                                    <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                        onClick={() => {
+                                            router.push(`/search/jewelry`);
+                                            closeDrawer();
+                                        }}
+                                    >
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -414,9 +625,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         jewelry
                                     </ListItem>
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -425,9 +643,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         Mobile
                                     </ListItem>
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -436,9 +661,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         Laptop
                                     </ListItem>
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -448,9 +680,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     </ListItem>
 
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -459,9 +698,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         Kitchen
                                     </ListItem>
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -470,9 +716,16 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                         Grocery
                                     </ListItem>
                                     <ListItem
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         disabled={isDisabled ? true : false}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <ChevronRightIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -484,6 +737,9 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </AccordionBody>
                         </Accordion>
                         <Accordion
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
                             open={open === 10}
                             icon={
                                 <ChevronDownIcon
@@ -494,18 +750,34 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 />
                             }
                         >
-                            <ListItem className="p-0" selected={open === 10}>
+                            <ListItem
+                                className="p-0"
+                                selected={open === 10}
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <AccordionHeader
                                     onClick={() => handleOpen(10)}
                                     className="border-b-0 p-3"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
                                 >
-                                    <ListItemPrefix>
+                                    <ListItemPrefix
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
+                                    >
                                         <UserCircleIcon
                                             className="h-6 w-6"
                                             strokeWidth={2}
                                         />
                                     </ListItemPrefix>
                                     <Typography
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                         color="blue-gray"
                                         className="mr-auto font-normal"
                                     >
@@ -514,11 +786,23 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 </AccordionHeader>
                             </ListItem>
                             <AccordionBody className="py-1">
-                                <List className="p-0">
+                                <List
+                                    className="p-0"
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <ListItem
                                         disabled={isDisabled ? true : false}
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <UserIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -528,8 +812,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     </ListItem>
                                     <ListItem
                                         disabled={isDisabled ? true : false}
+                                        placeholder=""
+                                        onPointerEnterCapture={() => {}}
+                                        onPointerLeaveCapture={() => {}}
                                     >
-                                        <ListItemPrefix>
+                                        <ListItemPrefix
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
+                                        >
                                             <BookmarkIcon
                                                 strokeWidth={2}
                                                 className="h-4 w-5"
@@ -540,8 +831,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     <Link href="/cart" onClick={closeDrawer}>
                                         <ListItem
                                             disabled={isDisabled ? true : false}
+                                            placeholder=""
+                                            onPointerEnterCapture={() => {}}
+                                            onPointerLeaveCapture={() => {}}
                                         >
-                                            <ListItemPrefix>
+                                            <ListItemPrefix
+                                                placeholder=""
+                                                onPointerEnterCapture={() => {}}
+                                                onPointerLeaveCapture={() => {}}
+                                            >
                                                 <ShoppingBagIcon
                                                     strokeWidth={2}
                                                     className="h-4 w-5"
@@ -558,15 +856,27 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             onClick={closeDrawer}
                             className="text-black"
                         >
-                            <ListItem>
-                                <ListItemPrefix>
+                            <ListItem
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
+                                <ListItemPrefix
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <ShoppingCartIcon
                                         className="h-6 w-6"
                                         strokeWidth={2}
                                     />
                                 </ListItemPrefix>
                                 Cart
-                                <ListItemSuffix>
+                                <ListItemSuffix
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <Chip
                                         value={cartProducts}
                                         size="sm"
@@ -578,12 +888,25 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                             </ListItem>
                         </Link>
                         <hr className="my-2 border-blue-gray-50" />
-                        <ListItem className="hidden">
-                            <ListItemPrefix>
+                        <ListItem
+                            className="hidden"
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
+                        >
+                            <ListItemPrefix
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <InboxIcon className="h-6 w-6" />
                             </ListItemPrefix>
                             Notification
-                            <ListItemSuffix>
+                            <ListItemSuffix
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <Chip
                                     value={notiValue}
                                     size="sm"
@@ -593,8 +916,17 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                 />
                             </ListItemSuffix>
                         </ListItem>
-                        <ListItem className="hidden">
-                            <ListItemPrefix>
+                        <ListItem
+                            className="hidden"
+                            placeholder=""
+                            onPointerEnterCapture={() => {}}
+                            onPointerLeaveCapture={() => {}}
+                        >
+                            <ListItemPrefix
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
+                            >
                                 <Cog6ToothIcon className="h-5 w-5" />
                             </ListItemPrefix>
                             Settings
@@ -608,8 +940,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     closeDrawer;
                                 }}
                                 className="text-black"
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
                             >
-                                <ListItemPrefix>
+                                <ListItemPrefix
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <ArrowRightStartOnRectangleIcon
                                         className="h-6 w-6"
                                         strokeWidth={2}
@@ -624,8 +963,15 @@ export function SidebarWithBurgerMenu({ cartProducts }) {
                                     router.push("/user/signin");
                                     closeDrawer;
                                 }}
+                                placeholder=""
+                                onPointerEnterCapture={() => {}}
+                                onPointerLeaveCapture={() => {}}
                             >
-                                <ListItemPrefix>
+                                <ListItemPrefix
+                                    placeholder=""
+                                    onPointerEnterCapture={() => {}}
+                                    onPointerLeaveCapture={() => {}}
+                                >
                                     <ArrowLeftEndOnRectangleIcon
                                         className="h-6 w-6"
                                         strokeWidth={2}

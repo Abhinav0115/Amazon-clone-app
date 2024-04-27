@@ -17,7 +17,7 @@ interface ProductCardProps {
         image: string;
         description: string;
         category: string;
-        rating: any;
+        rating: number | string | null | undefined;
     };
     // quantity: number;
 }

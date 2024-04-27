@@ -2,14 +2,15 @@ import Image from "next/image";
 import React from "react";
 
 interface ProductProps {
-    product: any; // Replace 'any' with the actual type of queryFilteredData
-    // title
-    // price
-    // description
-    // category
-    // image
-    // rating
-    // numReviews
+    product: {
+        id: number;
+        title: string;
+        description: string;
+        category: string;
+        image: string;
+        price: number | string | null | undefined;
+        rating: number | string | null | undefined;
+    };
 }
 
 const Productcards = ({ product }: ProductProps) => {
