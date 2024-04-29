@@ -23,9 +23,10 @@ export const useSupabase = () => {
         let { data, error } = await supabase
             .from("products")
             .select("*")
-            .or(
-                `title.ilike.*${query}*, description.ilike.*${query}*, category.ilike.*${query}*`
-            );
+        .or(
+            `title.ilike.*${query}*, description.ilike.*${query}*, category.ilike.*${query}*`
+            // `title.ilike.*${query}*, category.ilike.*${query}*`
+        );
         if (data) {
             setQueryFilteredData(data);
         }

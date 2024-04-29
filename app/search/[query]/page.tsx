@@ -1,4 +1,5 @@
 "use client";
+import NoProductFound from "@/components/products/No-Product-Found";
 import SearceResult from "@/components/search/search-result";
 import { useSupabase } from "@/utils/hooks/useSupabase";
 import { useParams } from "next/navigation";
@@ -8,9 +9,16 @@ const Page = () => {
     let { query } = useParams();
 
     query = Array.isArray(query) ? query[0] : query; // Ensure query is a string
-    query = query.replace("[", "").replace("]", "").replace(/%20/g, " ");
+    query = query
+        .replace("[", "")
+        .replace("]", "")
+        .replace(/%20/g, " ")
+        .replace(/%26/g, "&"); // Remove special characters
 
-    const { getQueryData, queryFilteredData } = useSupabase();
+    const {
+        getQueryData,
+        queryFilteredData,
+    }: { getQueryData: Function; queryFilteredData: any } = useSupabase();
 
     useEffect(() => {
         getQueryData(query.toString());
@@ -18,7 +26,17 @@ const Page = () => {
 
     return (
         <div>
-            <SearceResult queryFilteredData={queryFilteredData} />
+            {queryFilteredData.length !== 0 ? (
+                <SearceResult
+                    queryFilteredData={queryFilteredData}
+                    query={query}
+                />
+            ) : (
+                <NoProductFound
+                    query={query}
+                    queryFilteredData={queryFilteredData}
+                />
+            )}
         </div>
     );
 };

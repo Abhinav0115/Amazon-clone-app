@@ -6,6 +6,9 @@ import Image from "next/image";
 
 const HomeGrid = ({ products, title, category }: any) => {
     const router = useRouter();
+
+    const Plen = products.length > 7 ? 8 : 4;
+
     return (
         <>
             <div className="mx-5 bg-white px-5 pb-6 rounded-md pt-3 flex sm:flex-none items-center lg:items-start flex-col">
@@ -28,7 +31,7 @@ const HomeGrid = ({ products, title, category }: any) => {
             )}
             {products.length === 6 && ( */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-5">
-                    {products.slice(0, 4).map((product: any) => (
+                    {products.slice(0, Plen).map((product: any) => (
                         <div key={product.id}>
                             <HomeCard product={product} />
                         </div>

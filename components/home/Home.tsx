@@ -27,16 +27,42 @@ const HomePage = () => {
     }, []);
 
     const MensProducts = products.filter(
-        (product: CategoryProps) => product.category === "men's clothing"
+        (product: CategoryProps) =>
+            product.category === "men's clothing" ||
+            product.category === "men's Clothing" ||
+            product.category === "Men's clothing" ||
+            product.category === "Men's Clothing"
     );
     const WomensProducts = products.filter(
-        (product: CategoryProps) => product.category === "women's clothing"
+        (product: CategoryProps) =>
+            product.category === "women's clothing" ||
+            product.category === "women's Clothing" ||
+            product.category === "Women's clothing" ||
+            product.category === "Women's Clothing"
     );
     const ElectronicsProducts = products.filter(
-        (product: CategoryProps) => product.category === "electronics"
+        (product: CategoryProps) =>
+            product.category === "electronics" ||
+            product.category === "Electronics"
     );
     const JewelryProducts = products.filter(
-        (product: CategoryProps) => product.category === "jewelry"
+        (product: CategoryProps) =>
+            product.category === "jewelry" ||
+            product.category === "Jewelry" ||
+            product.category === "jewellery" ||
+            product.category === "Jewellery"
+    );
+    const ShoesProducts = products.filter(
+        (product: CategoryProps) =>
+            product.category === "Shoe" ||
+            product.category === "Shoes" ||
+            product.category === "shoes" ||
+            product.category === "Footwear" ||
+            product.category === "footwear"
+    );
+    const FurnitureProducts = products.filter(
+        (product: CategoryProps) =>
+            product.category === "Furniture" || product.category === "furniture"
     );
 
     return (
@@ -68,16 +94,26 @@ const HomePage = () => {
                     title={"Women's Clothing"}
                     category={"women's clothing"}
                 />
+                <HomeGrid
+                    products={FurnitureProducts}
+                    title={"Furnitures"}
+                    category={"Furniture"}
+                />
                 <AppleCards />
                 <HomeGrid
                     products={ElectronicsProducts}
                     title={"Electronics"}
-                    category={"electronics"}
+                    category={"Electronics"}
                 />
                 <HomeGrid
                     products={JewelryProducts}
                     title={"Jewelry"}
                     category={"jewelry"}
+                />
+                <HomeGrid
+                    products={ShoesProducts}
+                    title={"Shoes"}
+                    category={"Shoes"}
                 />
                 <PrimeVideos />{" "}
                 <div className="text-white font-semibold bg-gray-700 mx-5 p-3 rounded-md">

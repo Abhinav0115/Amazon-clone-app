@@ -43,13 +43,16 @@ const Header = () => {
         "Gift Cards",
         "Amazon pay",
         "Gift Ideas",
+    ];
+    const ProductsItemList = [
         "Electronics",
-        "Mobiles",
-        // "Home",
+        "Furniture",
+        "Jewelry",
+        "Shoes",
+        "Men's Clothing",
+        "Women's Clothing",
         "Fashion",
-        "Appliances",
-        // "Toys",
-        "Books",
+        "Kids & Baby",
     ];
 
     useEffect(() => {
@@ -170,16 +173,24 @@ const Header = () => {
                         href={"/"}
                         className="flex items-center p-0.5 rounded "
                     >
-                        <span className="outline-1 hover:bg-gray-700 p-1 px-1.5 flex items-center rounded-md">
+                        <span className="outline-1 outline-blue-gray-300 hover:bg-gray-800 hover:outline p-0.5   px-1.5 flex items-center rounded-md">
                             <BiMenu className="text-2xl" />
                             All
                         </span>
                     </Link>
-                    {itemList.map((item, index) => (
-                        <Link
-                            href={"/"}
+                    {/* {itemList.map((item, index) => (
+                        <div
                             key={index}
-                            className="p-0.5 px-2 hover:outline outline-1 rounded mt-2 text-nowrap hover:bg-gray-800 hidden md:block text-xs "
+                            className="p-0.5 px-2 rounded my-2 text-nowrap hover:bg-gray-800 hidden md:block text-xs select-none cursor-default"
+                        >
+                            {item}
+                        </div>
+                    ))} */}
+                    {ProductsItemList.map((item, index) => (
+                        <Link
+                            href={`/search/${item.toLowerCase()}`}
+                            key={index}
+                            className="p-0.5 px-2 hover:outline outline-1 outline-blue-gray-300 rounded my-2 text-nowrap hover:bg-gray-800 hidden md:block text-xs "
                         >
                             {item}
                         </Link>
