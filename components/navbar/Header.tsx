@@ -36,14 +36,7 @@ const Header = () => {
         }
     };
 
-    const itemList = [
-        "Fresh",
-        "Amazon miniTV",
-        "Sell",
-        "Gift Cards",
-        "Amazon pay",
-        "Gift Ideas",
-    ];
+    const itemList = ["Fresh", "Amazon miniTV", "Gift Cards", "Amazon pay"];
     const ProductsItemList = [
         "Electronics",
         "Furniture",
@@ -178,14 +171,15 @@ const Header = () => {
                             All
                         </span>
                     </Link>
-                    {/* {itemList.map((item, index) => (
+                    {itemList.map((item, index) => (
                         <div
                             key={index}
                             className="p-0.5 px-2 rounded my-2 text-nowrap hover:bg-gray-800 hidden md:block text-xs select-none cursor-default"
                         >
                             {item}
                         </div>
-                    ))} */}
+                    ))}
+                    <div className="my-2">|</div>
                     {ProductsItemList.map((item, index) => (
                         <Link
                             href={`/search/${item.toLowerCase()}`}

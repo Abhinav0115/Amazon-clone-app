@@ -628,7 +628,10 @@ export function SidebarWithBurgerMenu({
                                         placeholder=""
                                         onPointerEnterCapture={() => {}}
                                         onPointerLeaveCapture={() => {}}
-                                        disabled={isDisabled ? true : false}
+                                        onClick={() => {
+                                            router.push(`/search/shoes`);
+                                            closeDrawer();
+                                        }}
                                     >
                                         <ListItemPrefix
                                             placeholder=""
@@ -640,13 +643,16 @@ export function SidebarWithBurgerMenu({
                                                 className="h-4 w-5"
                                             />
                                         </ListItemPrefix>
-                                        Mobile
+                                        Shoes
                                     </ListItem>
                                     <ListItem
                                         placeholder=""
                                         onPointerEnterCapture={() => {}}
                                         onPointerLeaveCapture={() => {}}
-                                        disabled={isDisabled ? true : false}
+                                        onClick={() => {
+                                            router.push(`/search/furniture`);
+                                            closeDrawer();
+                                        }}
                                     >
                                         <ListItemPrefix
                                             placeholder=""
@@ -658,7 +664,7 @@ export function SidebarWithBurgerMenu({
                                                 className="h-4 w-5"
                                             />
                                         </ListItemPrefix>
-                                        Laptop
+                                        Furniture
                                     </ListItem>
                                     <ListItem
                                         placeholder=""
