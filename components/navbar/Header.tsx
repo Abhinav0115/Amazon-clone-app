@@ -179,7 +179,7 @@ const Header = () => {
                             {item}
                         </div>
                     ))}
-                    <div className="my-2">|</div>
+                    <div className="my-2 hidden md:block">|</div>
                     {ProductsItemList.map((item, index) => (
                         <Link
                             href={`/search/${item.toLowerCase()}`}
